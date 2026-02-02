@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.stream.*;
 
-class Solution2 {
+class Solution3 {
 
     static class Student {
         String name;
@@ -29,21 +29,21 @@ class Solution2 {
         int K = sc.nextInt();
 
         String result =
-            students.stream()
-                    // sort: marks desc, name asc
-                    .sorted(
-                        Comparator.comparingInt((Student s) -> s.marks).reversed()
-                                  .thenComparing(s -> s.name)
-                    )
-                    // take top K
-                    .limit(K)
-                    // extract names
-                    .map(s -> s.name)
-                    // join with space
-                    .collect(Collectors.joining(" "));
+                students.stream()
+                        // sort by marks desc, name asc
+                        .sorted(
+                                Comparator.comparingInt((Student s) -> s.marks)
+                                          .reversed()
+                                          .thenComparing(s -> s.name)
+                        )
+                        // take top K
+                        .limit(K)
+                        // extract names
+                        .map(s -> s.name)
+                        // join with space
+                        .collect(Collectors.joining(" "));
 
         System.out.println(result);
-
         sc.close();
     }
 }
